@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xc.xc.mapper.PersonMapper">
+    <select id="showAll" resultType="com.xc.xc.pojo.Person">
+        SELECT *
+        FROM person
+    </select>
+    <insert id="insertPerson" parameterType="com.xc.xc.pojo.Person">
+        INSERT INTO person(`name`, sex, age, `rank`, `department`)
+        VALUES (#{name}, #{sex}, #{age}, #{rank}, #{department})
+    </insert>
+    <delete id="deletePerson" parameterType="Integer">
+        DELETE
+        FROM person
+        WHERE id = #{id}
+    </delete>
+    <select id="selectByid" resultType="com.xc.xc.pojo.Person">
+        SELECT *
+        FROM person
+        WHERE id = #{id}
+    </select>
+
+    <update id="updatePersom" parameterType="com.xc.xc.pojo.Person">
+        UPDATE person
+        SET `name`=#{name},
+            sex=#{sex},
+            age=#{age},
+            rank=#{rank},
+            department=#{department}
+        WHERE id = #{id}
+    </update>
+</mapper>

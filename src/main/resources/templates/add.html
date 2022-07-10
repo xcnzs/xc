@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人员添加</title>
+    <script type="text/javascript" src="http://127.0.0.1:8080/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        //表单提交事件
+        function tj() {
+            var name = $("#xm").val();
+            var sex = $("#xb").val();
+            var age = $("#nl").val();
+            var rank = $("#dj").val();
+            var department = $("#bm").val();
+            var person = {"name": name, "sex": sex, "age": age, "rank": rank, "department": department};
+            alert("name:" + name + "sex:" + sex + "age:" + age + "rank:" + rank + "department:" + department);
+            if (name == '' || sex == 0 || age == '' || rank == 0 || department == 0) {
+                alert("必填项不能为空！");
+                return false;
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: 'http://127.0.0.1:8080/add',
+                    data: person,
+                    success: function (data) {
+                        if (data.toString() == '添加成功') {
+                            alert(data.toString());
+                            location.href = "http://127.0.0.1:8080/index.html";
+                        } else {
+                            alert(data.toString());
+                            location.href = "http://127.0.0.1:8080/queryMess?id=";
+                        }
+                    }
+                })
+            }
+        }
+
+
+    </script>
+    <style>
+        .even {
+            background-color: #66FFFF;
+        }
+
+        .odd {
+            background-color: #00E000;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <form action="javascript:void(0)" onsubmit="tj()">
+        <table border="1">
+            <tr class="even">
+                <th colspan="2" align="center" class="span">添加人员</th>
+                <input type="hidden" id="perid"/>
+            </tr>
+            <tr class="odd">
+                <td>姓名：</td>
+                <td>
+                    <input type="text" name="name" id="xm">
+                    <span class="span">*</span>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>性别：</td>
+                <td>
+                    <select name="sex" id="xb">
+                        <option value="0">请选择</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                    <span class="span">*</span>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>年龄：</td>
+                <td>
+                    <input type="text" name="age" id="nl">
+                    <span class="span">*</span>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>等级：</td>
+                <td>
+                    <select name="rank" id="dj">
+                        <option value="0">请选择</option>
+                        <option value="1级">1级</option>
+                        <option value="2级">2级</option>
+                        <option value="3级">3级</option>
+                        <option value="4级">4级</option>
+                        <option value="5级">5级</option>
+                    </select>
+                    <span class="span">*</span>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>部门：</td>
+                <td>
+                    <select name="department" id="bm">
+                        <option value="0">请选择</option>
+                        <option value="开发部">开发部</option>
+                        <option value="支持部">支持部</option>
+                        <option value="实践部">实践部</option>
+                        <option value="工程质量部">工程质量部</option>
+                    </select>
+                    <span class="span">*</span>
+                </td>
+            </tr>
+            <tr class="even">
+                <td colspan="2" align="center">
+                    <input type="submit" value="提交">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
