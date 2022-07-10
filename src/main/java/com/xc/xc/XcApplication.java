@@ -5,11 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.cssl.mapper")
+@MapperScan("com.xc.xc.mapper")
 public class XcApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(XcApplication.class, args);
     }
-
 }
