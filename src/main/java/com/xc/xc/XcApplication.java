@@ -10,5 +10,7 @@ public class XcApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(XcApplication.class, args);
+        System.out.println("熊灿  1");
+
     }
 }
